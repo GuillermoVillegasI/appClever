@@ -19,18 +19,15 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    //------------SAVE EMPLOYEE
+    //>>>>>>>>>>>>>>> REGISTER 
     @PostMapping
     public Employee registerEmployee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam Gender gender) throws ErrorService {
-                
         return employeeService.register(firstName.toUpperCase(), lastName.toUpperCase(), gender);
-
     }
 
-    //------------LIST EMPLOYEE
+    //>>>>>>>>>>>>>>> LIST EMPLOYEE
     @GetMapping("/list")
     public ArrayList<Employee> listEmployee() {
         return employeeService.listEmployees();
     }
-
 }

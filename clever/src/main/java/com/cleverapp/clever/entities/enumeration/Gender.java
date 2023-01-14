@@ -1,13 +1,13 @@
 
 package com.cleverapp.clever.entities.enumeration;
 
-
-public enum Gender {
+//>>>>>>>>>>>>>>> ENUM GENDER
+public enum Gender {    
     
-     FEMENINO("Femenino"), MASCULINO("Masculino");
-     
+     FEMENINO("Femenino"), MASCULINO("Masculino");     
      private String value ;
-
+     
+    //>>>>>>>>>>>>>>> CONSTRUCTORS 
     private Gender() {
     }
 
@@ -15,6 +15,7 @@ public enum Gender {
         this.value = value;
     }
 
+    //>>>>>>>>>>>>>>> GETTERS AND SETTERS
     public String getValue() {
         return value;
     }
@@ -23,11 +24,9 @@ public enum Gender {
         this.value = value;
     }
 
+    //>>>>>>>>>>>>>>> TO STRING
     @Override
     public String toString() {
         return "Gender{" + "value=" + value + '}';
     }
-     
-     
-    
 }

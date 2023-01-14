@@ -12,11 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface RegisterRepository extends JpaRepository<Register, Integer> {
-
+    
+    //>>>>>>>>>>>>>>> SERVICE 2 QUERY - SEARCH REGISTER
     @Transactional
     @Query("SELECT r FROM Register r WHERE r.date >= :dateFrom AND r.date <= :dateTo  AND ( r.employee.firstName LIKE :descriptionFilter OR r.employee.lastName LIKE  :descriptionFilter ) AND r.businessLocation = :businessLocation ")
     List<Register> findByDateBetweenWithFilter(@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo, @Param("descriptionFilter") String descriptionFilter, @Param("businessLocation") BusinessLocation businessLocation);
-
+    
+    //>>>>>>>>>>>>>>> SERVICE 3 QUERY - AVERAGE
     @Transactional
     @Query("SELECT r FROM Register r WHERE r.date >= :dateFrom AND r.date <= :dateTo AND r.businessLocation = :businessLocation ")
     List<Register> findByDateBetween(@Param("dateFrom") LocalDate dateFrom, @Param("dateTo") LocalDate dateTo, @Param("businessLocation") BusinessLocation businessLocation);

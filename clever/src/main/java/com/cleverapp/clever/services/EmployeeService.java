@@ -16,26 +16,23 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-//    ------------CREATE EMPLOYEE
+    //>>>>>>>>>>>>>>> REGISTER EMPLOYEE
     @Transactional(rollbackFor = {Exception.class})
     public Employee register(String firstName, String lastName, Gender gender) throws ErrorService {
-
         validate(firstName, lastName);
         Employee employee = new Employee();
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
         employee.setGender(gender);
-
         return employeeRepository.save(employee);
-
     }
 
-    //------------LIST EMPLOYEES
+    //>>>>>>>>>>>>>>> LIST EMPLOYEE
     public ArrayList<Employee> listEmployees() {
         return (ArrayList<Employee>) employeeRepository.findAll();
     }
 
-    //------------SEARCH EMPLOYEE BY ID
+    //>>>>>>>>>>>>>>> SEARCH EMPLOYEE BY ID
     @Transactional(readOnly = true)
     public Employee searchById(Integer id) throws ErrorService {
         Optional<Employee> answer = employeeRepository.findById(id);
@@ -46,7 +43,7 @@ public class EmployeeService {
         }
     }
 
-    //------------PARAMETERS VALIDATION
+    //>>>>>>>>>>>>>>> PARAMETERS VALIDATION
     private void validate(String firstName, String lastName) throws ErrorService {
         if (firstName == null || firstName.isEmpty()) {
             throw new ErrorService("The name cannot be null.");
@@ -55,5 +52,4 @@ public class EmployeeService {
             throw new ErrorService("Last name cannot be null.");
         }
     }
-
 }

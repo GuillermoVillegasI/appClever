@@ -6,7 +6,6 @@ import com.cleverapp.clever.entities.enumeration.RegisterType;
 import com.cleverapp.clever.error.ErrorService;
 import com.cleverapp.clever.services.RegisterService;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,33 +23,28 @@ public class RegisterController {
     @Autowired
     private RegisterService registerService;
 
-    //------------SAVE REGISTER
+    //>>>>>>>>>>>>>>> REGISTER
     @PostMapping
-    public Register saveRegister(@RequestParam Integer idEmployee, @RequestParam("localDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @RequestParam RegisterType registerType, @RequestParam BusinessLocation businessLocation) throws ErrorService {
-
+    public Register register(@RequestParam Integer idEmployee, @RequestParam("localDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @RequestParam RegisterType registerType, @RequestParam BusinessLocation businessLocation) throws ErrorService {
         return registerService.register(idEmployee, date, registerType, businessLocation);
-
     }
 
-    //------------LIST REGISTER
+    //>>>>>>>>>>>>>>> LIST REGISTER
     @GetMapping("/list")
     public List<Register> listRegister() {
         return registerService.listRegister();
     }
 
-    //------------FILTER REGISTER
+    //>>>>>>>>>>>>>>> SEARCH REGISTER
     @GetMapping("/search")
-    public List<Register> findByDateBetweenWithFilter(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo, @RequestParam String descriptionFilter, @RequestParam BusinessLocation businessLocation) {
-
+    public List<Register> findByDateBetweenWithFilter(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo, @RequestParam(defaultValue = "") String descriptionFilter, @RequestParam BusinessLocation businessLocation) {
         return registerService.findByDateBetweenWithFilter(dateFrom, dateTo, descriptionFilter, businessLocation);
-
     }
 
-    //------------AVERAGE
+    //>>>>>>>>>>>>>>> AVERAGE 
     @GetMapping("/average")
-    public Map<String, Double> averageByLocation(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo,@RequestParam BusinessLocation businessLocation ) {
+    public Map<String, Double> averageByLocation(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateFrom, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateTo, @RequestParam BusinessLocation businessLocation) {
         return registerService.averageByLocation(dateFrom, dateTo, businessLocation);
-
     }
 
 }

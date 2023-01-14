@@ -11,20 +11,19 @@ import javax.persistence.Id;
 
 @Entity
 public class Employee {
-
+    
+    //>>>>>>>>>>>>>>> ATTRIBUTES
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer eid;
-
     @Column(length = 30, nullable = false)
     private String firstName;
-
     @Column(length = 30, nullable = false)
-    private String lastName;
-    
+    private String lastName;    
     @Enumerated(EnumType.STRING)
     private Gender gender ;
-
+    
+    //>>>>>>>>>>>>>>> CONSTRUCTORS
     public Employee() {
     }
 
@@ -34,7 +33,8 @@ public class Employee {
         this.lastName = lastName;
         this.gender = gender;
     }
-
+    
+    //>>>>>>>>>>>>>>> GETTERS AND SETTERS
     public Integer getEid() {
         return eid;
     }
@@ -66,7 +66,8 @@ public class Employee {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
+    
+    //>>>>>>>>>>>>>>> TO STRING
     @Override
     public String toString() {
         return "Employee{" + "eid=" + eid + ", firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + '}';
